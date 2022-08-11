@@ -1,0 +1,11 @@
+{
+  "name": "qtruck-tests",
+  "version": "1.0.0",
+  "description": "Projeto de testes e2e na web",
+  "main": "index.js",
+  "author": "João Vinaud",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.4.0"
+  }
+}
