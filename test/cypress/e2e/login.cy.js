@@ -1,5 +1,8 @@
 /// <reference types="Cypress" />
 
+import loginPage from '../support/pages/Login'
+import mapPage from '../support/pages/Map'
+
 describe('Login', () => {
   it('deve logar com sucesso', () => {
 
@@ -8,9 +11,11 @@ describe('Login', () => {
       password: 'pwd123',
       name: 'Joao'
     }
-    cy.login(user)
+    loginPage.go()
+    loginPage.form(user)
+    loginPage.submit()
 
-    cy.loggedUser(user.name)
+    mapPage.loggedUser(user.name)
     
   })
 
@@ -20,9 +25,11 @@ describe('Login', () => {
       password: '123456',
     }
 
-    cy.login(user)
+    loginPage.go()
+    loginPage.form(user)
+    loginPage.submit()
 
-    cy.modalHaveText('Credenciais inválidas, tente novamente!')
+    loginPage.modal.haveText('Credenciais inválidas, tente novamente!')
     
   })
 
@@ -32,9 +39,11 @@ describe('Login', () => {
       password: 'pwd123',
     }
 
-    cy.login(user)
+    loginPage.go()
+    loginPage.form(user)
+    loginPage.submit()
 
-    cy.modalHaveText('Credenciais inválidas, tente novamente!')
+    loginPage.modal.haveText('Credenciais inválidas, tente novamente!')
   })
 
   context('Validação dos campos obrigatórios', () =>{
@@ -46,12 +55,11 @@ describe('Login', () => {
         password: 'pwd123',
       }
 
-      cy.visit('/')
-      cy.get('input[name=instagram]').clear()
-      cy.get('input[name=password]').type(user.password)
-      cy.contains('button', 'Entrar').click()
+      loginPage.go()
+      loginPage.form(user)
+      loginPage.submit()
 
-      cy.modalHaveText('Por favor, informe o seu código do Instagram!')
+      loginPage.modal.haveText('Por favor, informe o seu código do Instagram!')
   
     })
     
@@ -62,24 +70,26 @@ describe('Login', () => {
         password: '',
       }
       
-      cy.visit('/')
-      cy.get('input[name=instagram]').type(user.instagram)
-      cy.get('input[name=password]').clear()
-      cy.contains('button', 'Entrar').click()
+      loginPage.go()
+      loginPage.form(user)
+      loginPage.submit()
 
-      cy.modalHaveText('Por favor, informe a sua senha secreta!')
+      loginPage.modal.haveText('Por favor, informe a sua senha secreta!')
       
     })
     
     it('não deve logar sem preencher os campos necessários', () =>{
 
-      cy.visit('/')
+      const user ={
+        instagram: '',
+        password: '',
+      }
 
-      cy.get('input[name=instagram]').clear()
-      cy.get('input[name=password]').clear()
-      cy.contains('button', 'Entrar').click()
+      loginPage.go()
+      loginPage.form(user)
+      loginPage.submit()
 
-      cy.modalHaveText('Por favor, informe suas credenciais!')
+      loginPage.modal.haveText('Por favor, informe suas credenciais!')
     })
   })
 })
