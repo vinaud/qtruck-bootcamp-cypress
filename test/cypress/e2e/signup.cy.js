@@ -9,9 +9,11 @@ describe('signup', () => {
             password: 'pwd123'
         }
 
-        cy.deleteMany({instagram: user.instagram}, {collection: 'users'}).then(res => { 
-            cy.log(res); 
-        });
+        //cy.deleteMany({instagram: user.instagram}, {collection: 'users'}).then(res => { 
+        //     cy.log(res); 
+        // });
+
+        cy.apiResetUser(user.instagram)
 
         signupPage.go()
         signupPage.form(user)
@@ -19,3 +21,4 @@ describe('signup', () => {
         signupPage.modal.haveText('Agora você pode recomendar e/ou avaliar Food trucks.')
     })
 });
+
