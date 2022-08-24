@@ -13,15 +13,20 @@ describe('Recomendação', () => {
         const foodtruck = {
             name: 'Tienda del Chavo',
             description: 'O melhor lugar pra tomar o suco de limão, que parece groselha, mas tem gosto de tamarindo',
-            opening_hours: 'das 14 às 20h'
+            opening_hours: 'das 14 às 20h',
+            latitude: '-5.8112867',
+            longitude: '-35.2084129'
         }
 
         cy.apiCreateUser(user)
         cy.uiLogin(user)
 
-        cy.wait(3000)
-
         mapPage.createLink()
+        cy.setGeolocation(foodtruck.latitude, foodtruck.longitude)
+
+        cy.wait(30000)
+
+       
 
 
     })
