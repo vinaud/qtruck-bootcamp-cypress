@@ -81,7 +81,7 @@ export default function CreateFoodTruck() {
       return swal.fire({
         icon: 'warning',
         title: 'Oops...',
-        text: 'O campos nome, descrição e horário de funcionamento devem ser informados para recomendar um food truck!',
+        text: 'Os campos nome, descrição e horário de funcionamento devem ser informados para recomendar um food truck!',
       })
     }
 
