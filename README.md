@@ -12,7 +12,7 @@ O Qtruck é um sistema web que tem o objetivo que permitar clientes de foodtruck
 - NodeJS 
 - ReactJs 
 - MongoDB
--Cypress Versão 10
+- Cypress Versão 10
 
 
 ## Instruções
