@@ -1,3 +1,5 @@
+import mapPage from '../support/pages/Map'
+
 describe('Avaliações', () => {
     it('deve enviar uma nova avaliação', () => {
         const user = {
@@ -20,8 +22,12 @@ describe('Avaliações', () => {
         cy.apiCreateFoodTruck(foodtruck)
 
         cy.uiLogin(user)
+
+        mapPage.goToFoodtruck(foodtruck.name)
+
         
-        cy.get('.leaflet-marker-pane img').as('mapList')
+        
+     /* cy.get('.leaflet-marker-pane img').as('mapList')
         cy.get('@mapList').each((element, index, list) => {
             cy.get('@mapList').eq(index).click({force: true})
             cy.wait(1000)
@@ -34,6 +40,6 @@ describe('Avaliações', () => {
                     return false
                 }
             })
-        })
+        }) */
     });
 });
