@@ -33,6 +33,11 @@ describe('Avaliações', () => {
 
         foodTruckPage.addReview(review)
 
+        //Desafio Bootcamp começa aqui
+
+        foodTruckPage.showReview(review, user)
+
+        //Desafio Bootcamp termina aqui
         
         
      /* cy.get('.leaflet-marker-pane img').as('mapList')
@@ -48,6 +53,7 @@ describe('Avaliações', () => {
                     return false
                 }
             })
-        }) */
+        }) 
+    */
     });
 });

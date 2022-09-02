@@ -5,6 +5,20 @@ class FoodtruckPage {
 
         cy.contains('button', 'Enviar avaliação').click()
     }
+
+
+    //Desafio Bootcamp começa aqui
+
+    showReview(review, user){
+        cy.contains('h3', 'Avaliações recentes').should('be.visible')
+        cy.contains('strong', user.name).should('be.visible')
+        cy.contains('span', user.instagram).should('be.visible')
+        cy.contains('p', review.comment).should('be.visible')
+        cy.get(`img[alt="${user.name}"`).should('be.visible')
+        cy.get('.stars').find('svg[xmlns="http://www.w3.org/2000/svg"]').should('have.length', review.stars)
+    }
+
+    //Desafio Bootcamp termina aqui
 }
 
 export default new FoodtruckPage()
