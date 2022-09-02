@@ -1,4 +1,5 @@
 import mapPage from '../support/pages/Map'
+import foodTruckPage from '../support/pages/Foodtruck'
 
 describe('Avaliações', () => {
     it('deve enviar uma nova avaliação', () => {
@@ -17,6 +18,11 @@ describe('Avaliações', () => {
             open_on_weekends: false
         }
 
+        const review = {
+            comment: 'Suco top',
+            stars: 4
+        }
+
         cy.apiCreateUser(user)
         cy.apiLogin(user)
         cy.apiCreateFoodTruck(foodtruck)
@@ -24,6 +30,8 @@ describe('Avaliações', () => {
         cy.uiLogin(user)
 
         mapPage.goToFoodtruck(foodtruck.name)
+
+        foodTruckPage.addReview(review)
 
         
         
