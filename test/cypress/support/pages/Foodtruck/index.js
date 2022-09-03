@@ -15,7 +15,9 @@ class FoodtruckPage {
         cy.contains('span', user.instagram).should('be.visible')
         cy.contains('p', review.comment).should('be.visible')
         cy.get(`img[alt="${user.name}"`).should('be.visible')
-        cy.get('.stars').find('svg[xmlns="http://www.w3.org/2000/svg"]').should('have.length', review.stars)
+        cy.contains('span', user.instagram)
+            .parent().parent().siblings()
+            .find('svg[xmlns="http://www.w3.org/2000/svg"]').should('be.visible').should('have.length', review.stars)
     }
 
     //Desafio Bootcamp termina aqui
