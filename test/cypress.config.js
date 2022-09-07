@@ -1,11 +1,13 @@
 const { defineConfig } = require("cypress");
 const { cypressBrowserPermissionsPlugin } = require('cypress-browser-permissions')
 const mongo = require('cypress-mongodb')
+const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      allureWriter(on, config);
       mongo.configurePlugin(on);
       config = cypressBrowserPermissionsPlugin(on, config)
       return config
