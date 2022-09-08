@@ -1,14 +1,11 @@
 const { defineConfig } = require("cypress");
 const { cypressBrowserPermissionsPlugin } = require('cypress-browser-permissions')
-const mongo = require('cypress-mongodb')
-const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      allureWriter(on, config);
-      mongo.configurePlugin(on);
+     
       config = cypressBrowserPermissionsPlugin(on, config)
       return config
     },
@@ -20,10 +17,6 @@ module.exports = defineConfig({
         notifications: "allow",
         geolocation: "allow",
       },
-      mongodb: {
-        "uri": 'mongodb+srv://qa:cademy@cluster0.baz8uu4.mongodb.net/QtruckDB?retryWrites=true&w=majority',
-        "database": "QtruckDB",
-      }
     }
   },
 });
