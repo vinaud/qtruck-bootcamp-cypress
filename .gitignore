@@ -105,3 +105,5 @@ dist
 
 allure-results
 *.mp4
+
+.env
