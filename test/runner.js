@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 cypress.run({
-  // specs to run here
+  browser: 'chrome'
 })
 .then((results) => {
   const args = {
